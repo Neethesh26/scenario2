@@ -1,9 +1,9 @@
 'use client'
 import React, { useState }from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { useAuthContext } from "@/context/AuthContext";
+import { useAuthContext } from "../../../context/AuthContext";
+import { getAuth } from "firebase/auth";
 import { useRouter } from "next/navigation";
-import { db } from "../../../firebase/config";
+import addData from "../../../firebase/firestore/addData";
 
 
 function Page() {
@@ -14,23 +14,24 @@ function Page() {
         if (user == null) router.push("/")
     }, [user])
 
-    async function addData(name, age, ethnicity) {
-        try {
-            const docRef = await addDoc(collection(db, "information"), {
-                name: name,
-                age: age,
-                ethnicity: ethnicity,
-            });
-            console.log("Document written with ID: ", docRef.id);
-            return true;
-        }
-        catch (error) {
-            console.error(error);
-            return false;
-        }
+    const handleForm = async () => {
+        const data = {
+            name: "John",
+            age: 30,
+            email: "",
+        };
+
+        const { result, error } = await addData("users", getAuth().currentUser.uid, data);
     }
-    
-    return (<h1>Only logged in users can view this page</h1>);
+
+
+
+    return (
+    <>
+        <h1>Only logged in users can view this page</h1>
+        <button onClick={handleForm}>Add data</button>
+    </>
+    );
 }
 
 export default Page;
