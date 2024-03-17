@@ -1,6 +1,7 @@
 'use client'
 import React from "react";
 import signUp from "../../../firebase/auth/signup";
+import signIn from "../../../firebase/auth/signin";
 import { useRouter } from 'next/navigation'
 
 function Page() {
@@ -11,16 +12,18 @@ function Page() {
     const handleForm = async (event) => {
         event.preventDefault()
 
-        const { result, error } = await signUp(email, password);
+        const { result1, error1 } = await signUp(email, password);
+        const { result2, error2 } = await signIn(email, password);
 
-        if (error) {
-            return console.log(error)
+        if (error1) {
+            return console.log(error1)
         }
 
         // else successful
-        console.log(result)
+        console.log(result1)
         return router.push("/setup")
     }
+
     return (<section class="bg-gray-50 dark:bg-gray-900">
     <div class="flex flex-col items-center justify-center px-6 py-8 mx-auto md:h-screen lg:py-0">
         <a href="#" class="flex items-center mb-6 text-2xl font-semibold text-gray-900 dark:text-white">

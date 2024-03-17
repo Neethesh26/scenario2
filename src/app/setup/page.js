@@ -21,7 +21,8 @@ function Page() {
         if (user == null) router.push("/signin")
     }, [user])
 
-    const handleForm = async () => {
+    const handleForm = async (event) => {
+        event.preventDefault()
         const data = {
             firstName: firstName,
             lastName: lastName,
@@ -35,10 +36,10 @@ function Page() {
 
         if (error) {
             return console.log(error)
-        } else {
-            console.log(result)
-            return router.push("/")
         }
+        console.log(result)
+        return router.push("/")
+
     }
 
     return (
