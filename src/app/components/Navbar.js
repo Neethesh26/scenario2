@@ -23,7 +23,7 @@ function Navbar() {
                 <a onClick={() => router.push("/")}>Home</a>
                 </li>
                 <li className=" cursor-pointer">
-                <a onClick={() => router.push("/")}>Search</a>
+                <a onClick={() => router.push("/")}>Submission</a>
                 </li>
             </ul>
             </nav>

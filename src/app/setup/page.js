@@ -37,7 +37,7 @@ function Page() {
             return console.log(error)
         } else {
             console.log(result)
-            return router.push("/admin")
+            return router.push("/")
         }
     }
 
