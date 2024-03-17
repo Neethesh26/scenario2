@@ -18,7 +18,7 @@ function Page() {
     const router = useRouter()
 
     React.useEffect(() => {
-        if (user == null) router.push("/")
+        if (user == null) router.push("/signin")
     }, [user])
 
     const handleForm = async () => {
